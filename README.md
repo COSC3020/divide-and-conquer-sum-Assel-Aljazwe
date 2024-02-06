@@ -27,5 +27,5 @@ and solve it as we did in the lectures. Give the final $\Theta$ complexity.
 Describe your reasoning and the conclusion you've come to. Your reasoning is the
 most important part. Add your answer to this markdown file.
 
-Reasoning for Big Theta Complexity:
+**Reasoning for Big Theta Complexity**:
 The divide-and-conquer algorithm for summing an array by dividing it into three parts at each step has a time complexity of Θ(n). This conclusion is based on the analysis using the Master Theorem, where the primary cost comes from the need to solve each of the three sub-problems of size n/3, and the combination step is a simple sum operation that does not significantly add to the computational complexity.
