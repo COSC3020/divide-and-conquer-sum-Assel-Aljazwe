@@ -16,11 +16,11 @@ function divideAndConquerSum(a) {
         const split1 = leftIndex + Math.floor(range / 3);
         const split2 = leftIndex + 2 * Math.floor(range / 3) + 1;
 
-        
+        //Checks to ensure the dividing points are valid
         const validSplit1 = split1 > leftIndex ? split1 : leftIndex + 1;
         const validSplit2 = split2 > validSplit1 ? split2 : validSplit1 + 1;
 
-        // Recursively sum the three parts of the array
+        // Recursively summing the three parts of the array
         const sumFirstPart = recursiveSum(arr, leftIndex, validSplit1 - 1);
         const sumSecondPart = recursiveSum(arr, validSplit1, validSplit2 - 1);
         const sumThirdPart = recursiveSum(arr, validSplit2, rightIndex);
@@ -29,6 +29,6 @@ function divideAndConquerSum(a) {
         return sumFirstPart + sumSecondPart + sumThirdPart;
     }
 
-    // Call the recursive helper function with the entire array
+    // Calling the recursive helper function with the entire array
     return recursiveSum(a, 0, a.length - 1);
 }
