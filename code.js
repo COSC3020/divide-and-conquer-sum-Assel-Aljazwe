@@ -5,7 +5,7 @@ function divideAndConquerSum(a) {
         if (leftIndex > rightIndex) {
             return 0;
         }
-        // Base case: If the array only has one element
+        // Base case: If the array has one element
         if (leftIndex === rightIndex) {
             return arr[leftIndex];
         }
@@ -20,7 +20,7 @@ function divideAndConquerSum(a) {
         const sumFirstPart = recursiveSum(arr, leftIndex, validSplit1 - 1);
         const sumSecondPart = recursiveSum(arr, validSplit1, validSplit2 - 1);
         const sumThirdPart = recursiveSum(arr, validSplit2, rightIndex);
-@@ -29,6 +29,6 @@ function divideAndConquerSum(a) {
+        // Combining the sums of the three parts and return
         return sumFirstPart + sumSecondPart + sumThirdPart;
     }
 
