@@ -27,28 +27,4 @@ and solve it as we did in the lectures. Give the final $\Theta$ complexity.
 Describe your reasoning and the conclusion you've come to. Your reasoning is the
 most important part. Add your answer to this markdown file.
 
-**Recurrence Relation**:<br />
-In my code, each recursive call divides the array into three parts, which implies that the function is called three times for each division. <br />
-Each call deals with 1/3 of the original problem size <br />
-Lastly, there is a linear amount of work done outside of the recursive calls to calculate the splitting points and then combine the sums. <br />
-
-Therefore we can define: $T(n)$ = $3T(n/3)$ + $f(n)$ <br />
-Solving it: $T(n)$ = $3T(n/3)$ + $cn$ <br />
-$T(n)$ = $3(3T(n/9) + c(n/3))$ + $cn$ <br />
-$T(n)$ = $9T(n/9)$ + $2cn$ <br />
-$T(n)$ = $27T(n/27)$ + $3cn$ <br />
-...<br />
-...<br />
-$T(n)$ = $3$<sup>$i$</sup>$T$($n/3$<sup>$i$</sup>) + $icn$<br />
-Applying base case to find i:<br />
-$n/3$<sup>$i$</sup> = $1$<br />
-$i = log$<sub>$3$</sub>$n$<br />
-Substituting i back into the recurrence gives us:<br />
-$T(n)$ = $nT(1)$ + cnlog<sub>$3$</sub>$n$<br />
-Assuming T(1) is constant and ignoring constant factors and coefficients the final $\Theta$ complexity is:<br />
-$\Theta$ (n log n)<br />
-
-****Reasoning for Big Theta Complexity****:<br />
-The algorithm's Big theta complexity can be explained by looking at two things: <br />
-The depth of the recursion and the work done at each step. We cut the problem into three smaller pieces each time, which creates a recursion tree that grows with the log of the size of the problem. For every recursion, there's the task of summing the parts. This process is much similar to the mergesort we did in class, where you divide and then combine. The only difference here is that we divide by three instead of two, however the overall complexity doesn't change; it still remains $\Theta$ (n log n). This tells us that as the size of the problem increases, the time to solve it increases by a factor of the log of the problem size times the problem size itself. Thus creating a general pattern for divide and conquer algorithms
-
+Reasoning for Big Theta Complexity: The divide-and-conquer algorithm for summing an array by dividing it into three parts at each step has a time complexity of Θ(n). This conclusion is based on the analysis using the Master Theorem, where the primary cost comes from the need to solve each of the three sub-problems of size n/3, and the combination step is a simple sum operation that does not significantly add to the computational complexity.
