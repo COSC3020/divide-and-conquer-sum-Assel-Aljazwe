@@ -1,3 +1,4 @@
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/E1vcEWuv)
 # Divide and Conquer Sum
 
 In the lectures, we've covered merge sort, which uses a divide-and-conquer
@@ -25,3 +26,5 @@ and solve it as we did in the lectures. Give the final $\Theta$ complexity.
 
 Describe your reasoning and the conclusion you've come to. Your reasoning is the
 most important part. Add your answer to this markdown file.
+
+Reasoning for Big Theta Complexity: The divide-and-conquer algorithm for summing an array by dividing it into three parts at each step has a time complexity of Θ(n). This conclusion is based on the analysis using the Master Theorem, where the primary cost comes from the need to solve each of the three sub-problems of size n/3, and the combination step is a simple sum operation that does not significantly add to the computational complexity.
