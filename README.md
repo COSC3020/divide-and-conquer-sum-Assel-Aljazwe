@@ -28,27 +28,32 @@ Describe your reasoning and the conclusion you've come to. Your reasoning is the
 most important part. Add your answer to this markdown file.
 
 **Recurrence Relation**:<br />
-In my code, each recursive call divides the array into three parts, which implies that the function is called three times for each division. <br />
-Each call deals with 1/3 of the original problem size <br />
-Lastly, there is a linear amount of work done outside of the recursive calls to calculate the splitting points and then combine the sums. <br />
+In my code, each recursive call divides the array into three parts. <br />
+There are three recursive calls on subarrays, each of size n/3. <br />
+Combining the results from these recursive calls involves a constant amount of work, c. <br />
 
-Therefore we can define: $T(n)$ = $3T(n/3)$ + $f(n)$ <br />
-Solving it: $T(n)$ = $3T(n/3)$ + $cn$ <br />
-$T(n)$ = $3(3T(n/9) + c(n/3))$ + $cn$ <br />
-$T(n)$ = $9T(n/9)$ + $2cn$ <br />
-$T(n)$ = $27T(n/27)$ + $3cn$ <br />
+Therefore we can define: $T(n)$ = $3T(n/3)$ + $c$ <br />
+Solving it: $T(n)$ = $3T(n/3)$ + $c$ <br />
+$T(n)$ = 3(3T(n/3<sup>2</sup>) + c) + $c$ <br />
+      $T(n)$ = 3<sup>2</sup>T(n/3<sup>2</sup>) + $3c + c$ <br />
+$T(n)$ = 3<sup>3</sup>T(n/3<sup>3</sup>) + 3<sup>2</sup>c + 3c + c <br />
 ...<br />
 ...<br />
-$T(n)$ = $3$<sup>$i$</sup>$T$($n/3$<sup>$i$</sup>) + $icn$<br />
-Applying base case to find i:<br />
+$T(n)$ = 3<sup>i</sup>T(n/3<sup>i</sup>) + (3<sup>i-1</sup> + 3<sup>i-2</sup> + ... + 3 + 1)c <br />
+The geometric series becomes:
+S = (3<sup>i</sup>-1) / (3-1) = 3<sup>i</sup>-1 / 2 <br />
+$T(n)$ = 3<sup>i</sup>T(n/3<sup>i</sup>) + (3<sup>i</sup>-1 / 2)c <br />
+T(1) is a constant operation, so let T(1) = d, and the recursion stops when n/3<sup>i</sup> = 1, we get n = 3<sup>i</sup>, solving for i: i = log<sub>3</sub>(n)<br />
 $n/3$<sup>$i$</sup> = $1$<br />
+$n = 3$<sup>i</sup><br />
 $i = log$<sub>$3$</sub>$n$<br />
-Substituting i back into the recurrence gives us:<br />
-$T(n)$ = $nT(1)$ + cnlog<sub>$3$</sub>$n$<br />
-Assuming T(1) is constant and ignoring constant factors and coefficients the final $\Theta$ complexity is:<br />
-$\Theta$ (n log n)<br />
+Substituting everything back into the recurrence gives us:<br />
+$T(n)$ = $nT(1)$ + (n-1/2)c <br />
+$T(n)$ = $nd$ + (n-1/2)c <br />
+Since the term (n-1/2)c is less significant than n*d for large values of n, the dominant term becomes (nd). Since d is a constant, we ignore it thus simplifying the total work to :<br />
+$T(n)$ = $\Theta$ (n)<br />
 
 ****Reasoning for Big Theta Complexity****:<br />
-The algorithm's Big theta complexity can be explained by looking at two things: <br />
-The depth of the recursion and the work done at each step. We cut the problem into three smaller pieces each time, which creates a recursion tree that grows with the log of the size of the problem. For every recursion, there's the task of summing the parts. This process is much similar to the mergesort we did in class, where you divide and then combine. The only difference here is that we divide by three instead of two, however the overall complexity doesn't change; it still remains $\Theta$ (n log n). This tells us that as the size of the problem increases, the time to solve it increases by a factor of the log of the problem size times the problem size itself. Thus creating a general pattern for divide and conquer algorithms
+The Big Theta complexity of my implemented algorithm is determined by the constant work done after each recursion and by the depth of the recursive calls. The depth of the recursion for this problem is log<sub>3</sub>(n), with the parts being split up into three parts in each step of recursion. However, the work to combine the recursive results is constant, not depending on n, and so the total work done over levels of recursion is proportional to the number of recursive calls, which is n. Therefore, the Big Theta complexity of the algorithm is $\Theta$ (n), indicating the time complexity grows linearly with the size of the input.
+
 
